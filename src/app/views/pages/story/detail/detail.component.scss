@@ -1,0 +1,34 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .detail-wrap {
+    @include clear();
+    margin-bottom: 60px;
+
+    @include mobile {
+      padding: 0 12px;
+    }
+
+    & .btn-wrap {
+      text-align: right;
+      margin-bottom: 10px;
+      font-family: $title-font;
+
+      & button {
+        font-family: $title-font;
+
+        &.mr4 {
+          margin-right: 4px;
+        }
+      }
+
+      & mat-icon {
+        width: 14px;
+        height: 14px;
+        vertical-align: sub;
+        margin-right: 8px;
+      }
+    }
+  }
+}

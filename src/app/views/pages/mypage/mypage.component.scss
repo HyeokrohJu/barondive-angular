@@ -1,0 +1,45 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .sub-menu-wrap {
+    @include clear();
+    border-bottom: 1px solid $line-color;
+    margin-bottom: 30px;
+    background-color: #fff;
+    z-index: 9;
+
+    & .sub-art-wrap {
+      & ul {
+        @include clear();
+
+        display: flex;
+        align-items: center;
+        margin-left: 12px;
+
+        & > li {
+          position: relative;
+          padding: 22px 24px 22px;
+          font-family: $title-font;
+          font-weight: 500;
+          font-size: 16px;
+
+          &.active {
+            font-weight: 700;
+
+            &::before {
+              position: absolute;
+              content: '';
+              width: 100%;
+              height: 3px;
+              background-color: $primary-color;
+              left: 0;
+              bottom: 0;
+              animation: line-animation 0.25s;
+            }
+          }
+        }
+      }
+    }
+  }
+}

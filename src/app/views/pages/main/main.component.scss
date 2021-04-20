@@ -1,0 +1,81 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .main-layout-wrap {
+    @include clear();
+    display: flex;
+    flex: 1;
+    margin-bottom: 60px;
+
+    @include mobile {
+      display: block;
+    }
+
+    & .layout-item {
+      width: 100%;
+      margin-right: 12px;
+
+      &.w300 {
+        position: relative;
+        width: 300px;
+        margin-right: 0;
+        padding-left: 12px;
+
+        @include mobile {
+          width: auto;
+          padding-left: 0;
+        }
+
+        &::before {
+          position: absolute;
+          content: '';
+          width: 1px;
+          height: 100%;
+          top: 10px;
+          left: 0;
+          bottom: 0;
+          background-color: $line-color;
+          box-shadow: 1px 0px 5px #ddd;
+
+          @include mobile {
+            display: none;
+          }
+        }
+      }
+
+      & .col-flex {
+        display: flex;
+        flex: 1;
+        justify-content: space-around;
+
+        @include mobile {
+          display: block;
+        }
+
+        & .flex-item {
+          width: 50%;
+          padding: 12px;
+
+          @include mobile {
+            width: auto;
+            padding: 12px 12px 0;
+          }
+        }
+
+        & .flex-row-item {
+          width: 100%;
+          padding: 12px;
+        }
+      }
+    }
+
+    & .main-title-wrap {
+      @include title();
+    }
+  }
+
+  & .more-btn {
+    cursor: pointer;
+  }
+}

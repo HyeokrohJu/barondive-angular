@@ -1,0 +1,12 @@
+<article class="list-wrap" [style.width]="this.width" [style.height]="this.height">
+  <dl class="list-item" *ngFor="let listItem of this.dataList; let idx = index">
+    <dt>
+      <mat-icon *ngIf="listItem.isNew" aria-hidden="false" aria-label="신규">fiber_new</mat-icon>
+      <a [attr.idx]="idx" #listEl>{{ listItem.title }}</a>
+    </dt>
+    <dd>
+      <mat-icon aria-hidden="false" aria-label="등록일시">access_time</mat-icon>
+      {{ listItem.dateTime | dateFormat: this.momentMinDate }}
+    </dd>
+  </dl>
+</article>

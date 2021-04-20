@@ -1,0 +1,97 @@
+<section class="comment-wrap" #cmntEl>
+  <h3>
+    댓글 <span class="cnt">{{ this.cmntSize }}</span>
+  </h3>
+  <article class="write-wrap">
+    <textarea [(ngModel)]="this.cmntInsStr"></textarea>
+    <div>
+      <button class="comment-btn" #cmntInsBtnEl>
+        <mat-icon aria-hidden="false" aria-label="등록" svgIcon="edit"></mat-icon>
+        등록
+      </button>
+    </div>
+  </article>
+
+  <article class="list-wrap">
+    <ng-container *ngFor="let cmnt of this.cmntItem; let idx = index">
+      <div class="list-item" [class.sub]="cmnt.lvl > 0" [style.margin-left]="80 * cmnt.lvl + 'px'">
+        <div *ngIf="cmnt.lvl > 0" class="reply-bullet">
+          <mat-icon aria-hidden="false" aria-label="댓글의 댓글" svgIcon="reply_bullet"></mat-icon>
+        </div>
+        <div class="user-icon">
+          <mat-icon aria-hidden="false" aria-label="single" svgIcon="single"></mat-icon>
+        </div>
+        <ul class="list-data">
+          <li>
+            {{ cmnt.crenm }}
+            <span class="date-time">
+              <mat-icon aria-hidden="false" aria-label="등록일시" svgIcon="time"></mat-icon>
+              {{ cmnt.credate | dateFormat: this.momentFullDate }}
+            </span>
+          </li>
+          <li *ngIf="this.cmntEditIdx !== cmnt.cmntid" class="cont">
+            <pre [class.del]="cmnt.state === 'D'">{{ cmnt.cmnt }}</pre>
+            <button class="reply-cmnt" [attr.idx]="cmnt.cmntid" #cmntReplyBtnEl>
+              <mat-icon aria-hidden="false" aria-label="답글 달기" svgIcon="reply_bullet"></mat-icon>
+              답글 달기
+            </button>
+          </li>
+          <li *ngIf="this.cmntEditIdx === cmnt.cmntid" class="cont">
+            <div class="edit-wrap">
+              <textarea [(ngModel)]="this.cmntUpdStr"></textarea>
+              <div class="right-btn">
+                <button class="comment-btn edit" #cmntUpdBtnEl>
+                  <mat-icon aria-hidden="false" aria-label="수정" svgIcon="edit"></mat-icon>
+                  수정
+                </button>
+                <button class="comment-btn cancel" #cmntEdtCancelBtnEl>
+                  <mat-icon aria-hidden="false" aria-label="취소" svgIcon="cancel"></mat-icon>
+                  취소
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="item-btn" *ngIf="this.isAuth(cmnt.creid)" [class.del]="cmnt.state === 'D'">
+          <button mat-mini-fab color="primary" matTooltip="수정" [attr.idx]="cmnt.cmntid" #cmntEditBtnEl>
+            <mat-icon aria-hidden="false" aria-label="수정" svgIcon="edit"></mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" matTooltip="삭제" [attr.idx]="cmnt.cmntid" #cmntDelBtnEl>
+            <mat-icon aria-hidden="false" aria-label="삭제" svgIcon="delete"></mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="this.cmntReplyIdx === cmnt.cmntid" class="reply-item" [style.margin-left]="80 * (cmnt.lvl + 1) + 'px'">
+        <div class="reply-bullet">
+          <mat-icon aria-hidden="false" aria-label="댓글의 댓글" svgIcon="reply_bullet"></mat-icon>
+        </div>
+        <textarea [(ngModel)]="this.cmntReplyStr"></textarea>
+        <div class="right-btn">
+          <button class="comment-btn edit" #cmntReplyInsBtnEl>
+            <mat-icon aria-hidden="false" aria-label="등록" svgIcon="edit"></mat-icon>
+            등록
+          </button>
+          <button class="comment-btn cancel" #cmntReplyCancelBtnEl>
+            <mat-icon aria-hidden="false" aria-label="취소" svgIcon="cancel"></mat-icon>
+            취소
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </article>
+
+  <mat-paginator
+    *ngIf="this.cmntSize > 0"
+    appCustomPaginator
+    showFirstLastButtons
+    hidePageSize
+    [showTotalPages]="5"
+    [length]="this.cmntSize"
+    [pageSize]="this.cmntParam.itemsPerPage"
+    [pageIndex]="this.currtPgIdx"
+    (pageSwitchEv)="this.currtPgEv($event)"
+    (page)="this.currtPgEv($event)"
+  >
+  </mat-paginator>
+</section>

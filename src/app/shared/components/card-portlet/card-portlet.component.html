@@ -1,0 +1,18 @@
+<article class="card-wrap" [style.width]="this.width" #cardWrapEl>
+  <div class="card-img-wrap">
+    <div class="card-img" [style.background-image]="'url(' + this.imgUrl + ')'" [style.height]="this.height"></div>
+  </div>
+  <div class="card-info-wrap">
+    <h3 class="card-title">{{ this.title }}</h3>
+    <div class="card-time">
+      <span class="card-writer">
+        by <span class="uppercase">{{ this.writer }}</span>
+      </span>
+      <mat-icon aria-hidden="false" aria-label="등록일시">access_time</mat-icon>
+      <span>{{ this.dateTime | dateFormat: this.momentMinDate }}</span>
+    </div>
+    <p class="card-content">
+      {{ this.content | removeTag: true }}
+    </p>
+  </div>
+</article>

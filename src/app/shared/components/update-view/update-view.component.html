@@ -1,0 +1,62 @@
+<article class="update-view-art">
+  <div class="title-wrap">
+    <mat-form-field>
+      <mat-label>제목</mat-label>
+      <input matInput type="text" [(ngModel)]="this.bltInsParam.title" placeholder="제목을 입력하세요." />
+    </mat-form-field>
+  </div>
+  <div class="cont-wrap">
+    <ckeditor
+      editorUrl="/assets/extlib/ckeditor/ckeditor.js"
+      [data]="this.bltInsParam.cont"
+      [config]="this.config"
+      (ready)="this.editorReady($event)"
+      (fileUploadRequest)="this.fileUploadReq($event)"
+      (fileUploadResponse)="this.fileUploadRes($event)"
+    ></ckeditor>
+
+    <div class="editor-img-wrap">
+      <div class="editor-img-uploader">
+        <app-multi-img-upload [config]="this.editorPlConfig" (uploadCompleteEv)="this.editorPlComplete($event)"></app-multi-img-upload>
+      </div>
+      <div class="editor-no-img" *ngIf="this.editorAttachList.length === 0">
+        <mat-icon aria-hidden="false" aria-label="이미지" svgIcon="images"></mat-icon>
+        에디터에 등록된 이미지 리스트가 표시됩니다.
+      </div>
+      <div class="editor-img-wrap" *ngIf="this.editorAttachList.length > 0">
+        <div
+          class="img-item"
+          [class.active]="img.filethumb === 'Y'"
+          [style.background-image]="'url(' + img.fileurl + ')'"
+          *ngFor="let img of this.editorAttachList; let idx = index"
+        >
+          <div *ngIf="this.isRepImg" class="act" matTooltip="대표이미지" [attr.idx]="idx" #activeImgEl>
+            <mat-icon aria-hidden="false" aria-label="대표이미지" svgIcon="editor_active"></mat-icon>
+          </div>
+
+          <button class="del" matTooltip="이미지 삭제" [attr.idx]="idx" #editorDelImgEl>
+            <mat-icon aria-hidden="false" aria-label="이미지 삭제" svgIcon="delete"></mat-icon>
+          </button>
+
+          <button class="add" matTooltip="에디터에 이미지 등록" [attr.idx]="idx" #editorAddImgEl>
+            <mat-icon aria-hidden="false" aria-label="에디터에 등록" svgIcon="editor_add"></mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-plupload [config]="this.plConfig" (uploadCompleteEv)="this.updBltApi()" [doneFiles]="this.attachList"></app-plupload>
+
+  <div class="btn-wrap">
+    <button mat-raised-button color="accent" #updBtnEl>
+      <mat-icon aria-hidden="false" aria-label="수정" svgIcon="edit"></mat-icon>
+      수정
+    </button>
+
+    <button mat-raised-button color="primary" #listBtnEl>
+      <mat-icon aria-hidden="false" aria-label="목록" svgIcon="list"></mat-icon>
+      목록
+    </button>
+  </div>
+</article>

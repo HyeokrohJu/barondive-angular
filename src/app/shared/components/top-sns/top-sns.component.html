@@ -1,0 +1,22 @@
+<header class="top-sns-wrap">
+  <section class="sns-sec-wrap">
+    <article>Let's keep the Honor of Dive!!</article>
+    <article>
+      <a class="icon-btn" #facebookEl>
+        <mat-icon aria-hidden="false" aria-label="Facebook" matTooltip="Facebook">facebook</mat-icon>
+      </a>
+      <a class="icon-btn" #instagramEl>
+        <mat-icon aria-hidden="false" aria-label="Instagram" svgIcon="instagram" matTooltip="Instagram"></mat-icon>
+      </a>
+      <a class="icon-btn" #mypageEl>
+        <mat-icon aria-hidden="false" aria-label="MyPage" matTooltip="MyPage">person</mat-icon>
+      </a>
+      <a *ngIf="!this.isToken" class="icon-btn" #loginEl>
+        <mat-icon aria-hidden="false" aria-label="Login" matTooltip="Login">login</mat-icon>
+      </a>
+      <a *ngIf="this.isToken" class="icon-btn" #logoutEl>
+        <mat-icon aria-hidden="false" aria-label="Logout" matTooltip="Logout">logout</mat-icon>
+      </a>
+    </article>
+  </section>
+</header>

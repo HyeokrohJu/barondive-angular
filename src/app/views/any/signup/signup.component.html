@@ -1,0 +1,77 @@
+<section class="signup-wrap">
+  <article>
+    <div class="signup-img-wrap">
+      <div class="bg"></div>
+      <div class="bg-img"></div>
+      <div class="text-wrap">
+        <h3><a #baronTitEl>BaronDive</a></h3>
+        <p>Let's keep the Honor of Dive!!</p>
+      </div>
+    </div>
+    <div class="m-logo">
+      <a #baronTitEl><img src="/assets/images/logo/baron_logo_small.png" alt="Barondive" class="small-logo" /></a>
+    </div>
+    <div class="form-wrap" [formGroup]="this.submitGroup">
+      <div>
+        <h2>회원가입</h2>
+        <div class="input-wrap">
+          <mat-form-field class="input-field">
+            <mat-label>아이디</mat-label>
+            <mat-icon matPrefix svgIcon="user_check" class="prefix-icon"></mat-icon>
+            <input matInput type="text" formControlName="loginid" placeholder="아이디를 입력하세요." #inputEl />
+            <mat-error *ngIf="this.getFormCtrl('loginid').hasError('required')">아이디를 입력하세요.</mat-error>
+            <mat-error *ngIf="this.getFormCtrl('loginid').hasError('isMemberDiff')">아이디가 중복 됩니다.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-wrap">
+          <mat-form-field class="input-field">
+            <mat-label>비밀번호</mat-label>
+            <mat-icon matPrefix svgIcon="password" class="prefix-icon"></mat-icon>
+            <input matInput type="password" formControlName="passwd" placeholder="비밀번호를 입력하세요." #inputEl />
+            <mat-error *ngIf="this.getFormCtrl('passwd').hasError('required')">비밀번호를 입력하세요.</mat-error>
+            <mat-error *ngIf="this.getFormCtrl('passwd').hasError('password')">
+              영문 2자이상 및 숫자, 특수문자가 1회 이상 들어가야 합니다.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-wrap">
+          <mat-form-field class="input-field">
+            <mat-label>이름</mat-label>
+            <mat-icon matPrefix svgIcon="user" class="prefix-icon"></mat-icon>
+            <input matInput type="text" formControlName="usernm" placeholder="이름을 입력하세요." #inputEl />
+            <mat-error *ngIf="this.getFormCtrl('usernm').hasError('required')">이름을 입력하세요.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="sex-wrap">
+          <mat-radio-group formControlName="sex">
+            <mat-radio-button color="primary" value="M" class="radio-sex-m">남성</mat-radio-button>
+            <mat-radio-button color="primary" value="F" class="radio-sex-f">여성</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="input-wrap">
+          <mat-form-field class="input-field">
+            <mat-label>E-mail</mat-label>
+            <mat-icon matPrefix svgIcon="email" class="prefix-icon"></mat-icon>
+            <input matInput type="text" formControlName="email" placeholder="E-mail을 입력하세요." #inputEl />
+            <mat-error *ngIf="this.getFormCtrl('email').hasError('required')">E-mail을 입력하세요.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-wrap">
+          <mat-form-field class="input-field">
+            <mat-label>휴대전화</mat-label>
+            <mat-icon matPrefix svgIcon="mphone" class="prefix-icon"></mat-icon>
+            <input matInput type="text" formControlName="mphone" placeholder="휴대전화를 입력하세요." #inputEl />
+            <mat-error *ngIf="this.getFormCtrl('email').hasError('required')">휴대전화를 입력하세요.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="signup-btn">
+          <button mat-raised-button color="primary" [disabled]="this.submitGroup.invalid" #signupBtnEl>
+            <mat-icon aria-hidden="false" aria-label="삭제" svgIcon="login"></mat-icon>
+            회원가입
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

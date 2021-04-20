@@ -1,0 +1,23 @@
+<section class="main-carousel-wrap">
+  <div class="carousel-img-bg" style="background-image: url('{{ this.currtCarousel.imagePath }}')"></div>
+  <article class="carousel-item-wrap">
+    <mat-carousel
+      [hideArrows]="false"
+      [hideIndicators]="false"
+      [maintainAspectRatio]="false"
+      [svgIconOverrides]="this.svgIcon"
+      (changeEmitter)="this.carouselChange($event)"
+    >
+      <mat-carousel-slide *ngFor="let car of this.mainCarouselList; let idx = index">
+        <div
+          class="carousel-bg {{ car.aniPos }}"
+          [class.active]="car.imagePath === this.currtCarousel.imagePath"
+          style="background-image: url('{{ car.imagePath }}')"
+        >
+          <div class="carousel-title">{{ car.title }}</div>
+          <div class="carousel-sub-title">{{ car.subTitle }}</div>
+        </div>
+      </mat-carousel-slide>
+    </mat-carousel>
+  </article>
+</section>

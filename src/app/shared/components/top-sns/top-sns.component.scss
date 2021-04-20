@@ -1,0 +1,43 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .top-sns-wrap {
+    @include clear();
+    background-color: $bg-primary;
+    color: $bg-primary-txt-color;
+    height: 40px;
+    width: 100%;
+
+    & .sns-sec-wrap {
+      width: $content-default-width;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: space-between;
+
+      @include mobile {
+        width: auto;
+
+        &:first-child {
+          margin-left: 12px;
+        }
+      }
+
+      & .icon-btn {
+        margin-right: 6px;
+        cursor: pointer;
+
+        & > mat-icon {
+          vertical-align: bottom;
+        }
+
+        &:hover {
+          color: $bg-primary-txt-hover-color;
+        }
+      }
+    }
+  }
+}

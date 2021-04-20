@@ -1,0 +1,62 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & h2 {
+    @include clear();
+
+    font-family: $title-font;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  & .cont {
+    @include clear();
+
+    padding: 16px;
+    min-width: 320px;
+
+    & .type-wrap {
+      & .radio-email {
+        margin-right: 16px;
+      }
+    }
+
+    & .input-field {
+      @include clear();
+      margin-top: 0;
+      width: 100%;
+
+      @include mobile {
+        width: 240px;
+      }
+
+      &:not(.mat-focused) ::ng-deep .mat-form-field-flex:hover .mat-form-field-outline-thick {
+        color: rgb(0 0 0 / 30%);
+      }
+    }
+
+    & .res-wrap {
+      margin-top: 10px;
+      font-family: $title-font;
+      font-size: 13px;
+
+      & > ul {
+        @include clear();
+        margin-top: 20px;
+
+        & > li {
+          position: relative;
+          font-weight: 600;
+          font-size: 16px;
+          color: $primary-color;
+          margin-bottom: 10px;
+          padding-left: 16px;
+
+          @include arrowBullet(3px, 3px, 8px, 0);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<div #spacer></div>
+<nav
+  class="top-gnb-wrap"
+  [class.gnb-small]="this.isGnbSmall"
+  stickyThing
+  [spacer]="spacer"
+  [enable]="!this.isMobile"
+  (stickyPosition)="chnageStickyPos($event)"
+  marginLeft="0"
+>
+  <section class="gnb-sec-wrap">
+    <article class="logo-wrap">
+      <a *ngIf="!this.isGnbSmall" #mainLinkEl><img src="/assets/images/logo/baron_logo.png" alt="Barondive" class="big-logo" /></a>
+      <a *ngIf="this.isGnbSmall" #mainLinkEl><img src="/assets/images/logo/baron_logo_small.png" alt="Barondive" class="small-logo" /></a>
+    </article>
+    <article class="nav-items">
+      <ul>
+        <li *ngFor="let nav of this.navList; let idx = index" [class.active]="this.currentNav === nav.menucd">
+          <a
+            popoverClass="popover-white"
+            placement="bottom"
+            [appStickyPopover]="navSub"
+            [isShow]="nav.children.length > 1"
+            #navEl
+            [attr.idx]="idx"
+          >
+            {{ nav.menunm }}
+          </a>
+
+          <ng-template #navSub>
+            <ul class="sub-nav" *ngIf="nav.children.length > 1">
+              <li *ngFor="let child of nav.children; let subIdx = index">
+                <a (click)="this.clkSubNav(nav, child)">{{ child.menunm }}</a>
+              </li>
+            </ul>
+          </ng-template>
+        </li>
+      </ul>
+    </article>
+    <article class="nav-mobile-wrap">
+      <a #mobileMenuEl><mat-icon svgIcon="menu_mobile"></mat-icon></a>
+      <div class="overlay" [class.active]="this.isMenuOpen" #mobileCloseEl></div>
+      <div class="nav-mobile" [class.active]="this.isMenuOpen">
+        <div class="close" #mobileCloseEl></div>
+        <div class="m-logo">
+          <a #mainLinkEl><img src="/assets/images/logo/baron_logo_small.png" alt="Barondive" class="small-logo" /></a>
+        </div>
+        <ul>
+          <li *ngFor="let nav of this.navList; let idx = index" [class.active]="this.currentNav === nav.menucd">
+            <a #navEl [attr.idx]="idx">
+              <mat-icon svgIcon="{{ nav.icon }}"></mat-icon>
+              {{ nav.menunm }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </section>
+</nav>

@@ -1,0 +1,18 @@
+<article class="img-list-art" [style.width]="this.width" #clickBtnEl>
+  <div class="img-wrap">
+    <div class="img-bg" [style.background-image]="'url(' + this.data.filethumb + ')'" [style.height]="this.height"></div>
+  </div>
+  <div class="info-wrap">
+    <h3 class="img-title">{{ this.data.title }}</h3>
+    <div class="img-time">
+      <span class="img-writer">
+        by <span class="uppercase">{{ this.data.crenm }}</span>
+      </span>
+      <mat-icon aria-hidden="false" aria-label="등록일시">access_time</mat-icon>
+      <span>{{ this.data.credate | dateFormat: this.momentMinDate }}</span>
+    </div>
+    <p class="img-content">
+      {{ this.data.cont | removeTag: true }}
+    </p>
+  </div>
+</article>

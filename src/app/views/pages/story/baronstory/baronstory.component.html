@@ -1,0 +1,63 @@
+<section class="baronstory-wrap">
+  <article>
+    <div class="sub-title-wrap">
+      <h2 class="main-title">Baron Story</h2>
+      <div class="center-line"></div>
+      <div class="search-wrap">
+        <button mat-mini-fab color="{{ this.isSearch === 'up' ? 'accent' : 'primary' }}" matTooltip="검색" #searchBtnEl>
+          <mat-icon *ngIf="this.isSearch === 'up'" aria-hidden="false" aria-label="검색" svgIcon="search_up" class="search-ani"></mat-icon>
+          <mat-icon
+            *ngIf="this.isSearch !== 'up'"
+            aria-hidden="false"
+            aria-label="검색"
+            svgIcon="search_down"
+            class="search-ani"
+          ></mat-icon>
+        </button>
+        <button *ngIf="!!this.bltParams?.searchtxt" mat-mini-fab color="warn" matTooltip="검색 초기화" class="search-clear" #searchClearEl>
+          <mat-icon aria-hidden="false" aria-label="검색" svgIcon="search_reset"></mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="search-input" [class.slide-down]="this.isSearch === 'up'" [class.slide-up]="this.isSearch === 'down'">
+      <mat-form-field class="search-input-field">
+        <mat-label>검색어</mat-label>
+        <input matInput type="text" [(ngModel)]="this.searchTxt" placeholder="검색어를 입력하세요." #searchInputEl />
+        <button matSuffix mat-mini-fab color="primary" class="input-button" #searchEvEl>
+          <mat-icon class="input-button-icon">keyboard_return</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <section class="card-list-wrap">
+      <app-img-list
+        *ngFor="let list of this.bStoryList"
+        [width]="this.width"
+        [height]="this.height"
+        [data]="list"
+        (clickEv)="this.detailView($event)"
+      ></app-img-list>
+    </section>
+
+    <div class="footer-wrap">
+      <div class="btn-wrap">
+        <button *ngIf="this.isAuth" mat-mini-fab color="primary" matTooltip="등록" #insBtnEl>
+          <mat-icon aria-hidden="false" aria-label="등록" svgIcon="edit"></mat-icon>
+        </button>
+      </div>
+      <div>
+        <mat-paginator
+          appCustomPaginator
+          showFirstLastButtons
+          hidePageSize
+          [showTotalPages]="5"
+          [length]="this.bStoryListTot"
+          [pageSize]="this.itemPerPage"
+          [pageIndex]="this.currtPgIdx"
+          (pageSwitchEv)="this.currtPgEv($event)"
+          (page)="this.currtPgEv($event)"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </article>
+</section>

@@ -1,0 +1,193 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .update-view-art {
+    @include clear();
+    margin-bottom: 60px;
+
+    @include mobile {
+      padding: 0 12px;
+    }
+
+    & .title-wrap {
+      width: 100%;
+
+      & > mat-form-field {
+        width: 100%;
+
+        &:not(.mat-focused) ::ng-deep .mat-form-field-flex:hover .mat-form-field-outline-thick {
+          color: rgb(0 0 0 / 30%);
+        }
+      }
+    }
+
+    & .cont-wrap {
+      position: relative;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+      margin-bottom: 40px;
+
+      &::after {
+        position: absolute;
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 14px;
+        border: 3px solid #ddd;
+        bottom: -11px;
+        left: 50%;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px #ccc;
+      }
+
+      & .editor-img-wrap {
+        margin-top: 20px;
+
+        & .editor-img-uploader {
+          text-align: right;
+          margin-bottom: 14px;
+        }
+
+        & .editor-no-img {
+          border: 1px solid #dfdfdf;
+          border-radius: 6px;
+          display: flex;
+          flex: 1;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          padding: 5px 10px;
+          min-height: 114px;
+          max-height: 222px;
+          font-weight: 500;
+          font-family: $title-font;
+          font-size: 15px;
+
+          & > mat-icon {
+            width: 18px;
+            height: 18px;
+            vertical-align: text-bottom;
+            margin-right: 4px;
+            color: $primary-color;
+          }
+        }
+
+        & .editor-img-wrap {
+          border: 1px solid #dfdfdf;
+          border-radius: 6px;
+          display: flex;
+          flex: 1;
+          flex-wrap: wrap;
+          align-items: center;
+          padding: 5px 10px;
+          min-height: 114px;
+          max-height: 222px;
+          overflow: auto;
+
+          & .img-item {
+            position: relative;
+            margin: 8px;
+            width: 128px;
+            height: 96px;
+            background-position: center center;
+            background-size: cover;
+            border-radius: 6px;
+            background-color: rgb(0 0 0 / 30%);
+            border: 3px solid $line-color;
+            transition: border-color 0.3s ease-in-out;
+
+            &:hover {
+              border-color: $primary-color;
+              transition: border-color 0.3s ease-in-out;
+
+              & .add,
+              & .del,
+              &:not(.active) .act {
+                opacity: 1;
+                visibility: visible;
+                transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+              }
+            }
+
+            &.active {
+              border: 3px solid $primary-color;
+
+              & .act {
+                opacity: 1;
+                visibility: visible;
+                color: $primary-color;
+                cursor: default;
+              }
+            }
+
+            & .add,
+            & .del {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              opacity: 0;
+              visibility: hidden;
+              background-color: $primary-color;
+              color: #fff;
+              border: 0 none;
+              border-radius: 6px 0 0 0;
+              outline: none;
+              padding: 4px 8px 2px;
+              cursor: pointer;
+              transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+              & > mat-icon {
+                width: 18px;
+                height: 18px;
+              }
+            }
+
+            & .del {
+              left: 0;
+              border-radius: 0 6px 0 0;
+              background-color: $red-color;
+            }
+
+            & .act {
+              position: absolute;
+              top: -10px;
+              left: -10px;
+              color: #aaa;
+              cursor: pointer;
+              opacity: 0;
+              visibility: hidden;
+              transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+              & > mat-icon {
+                width: 28px;
+                height: 28px;
+                background-color: #fff;
+                border-radius: 28px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & .btn-wrap {
+      text-align: right;
+      margin-bottom: 10px;
+      font-family: $title-font;
+
+      & button {
+        font-family: $title-font;
+        margin-left: 8px;
+      }
+
+      & mat-icon {
+        width: 14px;
+        height: 14px;
+        vertical-align: sub;
+        margin-right: 4px;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<article id="{{ this.containerId }}" class="plupload-wrap">
+  <div class="plupload-top">
+    <h3>첨부파일</h3>
+    <div class="top-btn">
+      <button mat-mini-fab color="primary" matTooltip="파일 첨부" #pluploadBtnEl>
+        <mat-icon aria-hidden="false" aria-label="파일첨부" svgIcon="search"></mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-chip-list class="file-list" [class.center]="this.files.length === 0">
+    <div class="no-file" *ngIf="this.files.length === 0">
+      <mat-icon aria-hidden="false" aria-label="파일첨부" svgIcon="upload"></mat-icon> 첨부파일을 등록 할 수 있습니다.
+    </div>
+    <div *ngFor="let file of this.files">
+      <mat-chip [removable]="true" (removed)="this.fileRemove(file)">
+        <mat-chip-avatar class="add" *ngIf="!file.uploaded"><mat-icon aria-hidden="false" aria-label="추가">add</mat-icon></mat-chip-avatar>
+        <mat-chip-avatar class="success" *ngIf="!!file.uploaded">
+          <mat-icon aria-hidden="false" aria-label="완료">check</mat-icon>
+        </mat-chip-avatar>
+        {{ file.name }} ({{ file.sizeStr }})
+        <mat-icon matChipRemove matTooltip="첨부파일 삭제">cancel</mat-icon>
+      </mat-chip>
+      <div class="progress-wrap" *ngIf="this.uploadState && !file.uploaded">
+        <mat-progress-bar mode="determinate" [value]="this.progress[file.id] || 0"></mat-progress-bar>
+      </div>
+    </div>
+  </mat-chip-list>
+</article>

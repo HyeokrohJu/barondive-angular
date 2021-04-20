@@ -1,0 +1,38 @@
+<article class="detail-wrap">
+  <h2>{{ this.descItem?.title }}</h2>
+  <div class="info-wrap">
+    <div class="info-item">
+      <mat-icon aria-hidden="false" aria-label="single" svgIcon="single"></mat-icon>
+    </div>
+    <div class="info-item">
+      <div class="writer">{{ this.descItem?.crenm }}</div>
+      <div class="writer-info">
+        <mat-icon aria-hidden="false" aria-label="등록일시" svgIcon="time"></mat-icon>
+        <span class="txt">{{ this.descItem?.credate | dateFormat: this.momentFullDate }}</span>
+        <mat-icon aria-hidden="false" aria-label="조회수" svgIcon="eye"></mat-icon>
+        <span class="txt">{{ this.descItem?.clickcnt }}</span>
+        <mat-icon aria-hidden="false" aria-label="댓글수" svgIcon="comment"></mat-icon>
+        <span class="txt">{{ this.descItem?.cntcmnt }}</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="this.attachItem.length > 0" class="attach-wrap">
+    <h3>첨부파일</h3>
+    <ul>
+      <li *ngFor="let attach of this.attachItem; let idx = index" #attachBtnEl [attr.idx]="idx">
+        <div class="file-nm">
+          {{ attach.filenm }}
+          <span class="sub">({{ attach.filesize }})</span>
+          <span class="sub">
+            <mat-icon aria-hidden="false" aria-label="등록일시" svgIcon="download"></mat-icon>
+          </span>
+        </div>
+        <div>
+          <mat-icon aria-hidden="false" aria-label="등록일시" svgIcon="time"></mat-icon>
+          {{ attach.credate | dateFormat: this.momentFullDate }}
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="cont-wrap" [innerHTML]="this.descItem?.cont | safeHtml"></div>
+</article>

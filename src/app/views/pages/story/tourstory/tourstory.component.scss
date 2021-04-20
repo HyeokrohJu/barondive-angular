@@ -1,0 +1,128 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .tourstory-wrap {
+    @include clear();
+
+    & > article {
+      margin-bottom: 40px;
+
+      @include mobile {
+        padding: 0 12px;
+      }
+
+      & .sub-title-wrap {
+        position: relative;
+        display: flex;
+        flex: 1;
+
+        @include title();
+
+        margin-bottom: 20px;
+
+        & .search-wrap {
+          padding-left: 10px;
+          text-align: right;
+          display: flex;
+
+          & .search-ani {
+            animation: rotate 0.2s linear both;
+          }
+
+          & .search-clear {
+            margin-left: 10px;
+            animation: rotate 0.2s linear both;
+          }
+        }
+      }
+
+      & .search-input {
+        width: 100%;
+        background-color: #fff;
+        text-align: right;
+        visibility: hidden;
+        height: 0;
+
+        & .search-input-field {
+          @include clear();
+          width: 300px;
+
+          &:not(.mat-focused) ::ng-deep .mat-form-field-flex:hover .mat-form-field-outline-thick {
+            color: rgb(0 0 0 / 30%);
+          }
+        }
+
+        &.slide-down {
+          animation: slide-down 0.2s linear both;
+        }
+
+        &.slide-up {
+          animation: slide-up 0.1s linear both;
+        }
+      }
+
+      & .card-list-wrap {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        flex-wrap: wrap;
+
+        @include mobile {
+          display: block;
+        }
+      }
+    }
+
+    & .footer-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & .btn-wrap {
+        & mat-icon {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    visibility: hidden;
+    height: 0;
+  }
+  90% {
+    visibility: visible;
+    height: 77px;
+  }
+  100% {
+    visibility: visible;
+    height: auto;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    visibility: visible;
+    height: 77px;
+  }
+
+  to {
+    visibility: hidden;
+    height: 0;
+  }
+}
+
+@keyframes rotate {
+  from {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
+    transform: rotate(360deg);
+  }
+}

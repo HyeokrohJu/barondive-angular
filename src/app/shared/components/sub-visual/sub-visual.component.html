@@ -1,0 +1,6 @@
+<section class="sub-visual-wrap">
+  <div class="visual-img-bg" [style.background-image]="'url(' + this.imgUrl + ')'"></div>
+  <article class="article-item-wrap" [style.background-image]="'url(' + this.imgUrl + ')'">
+    <h2 [class.active]="this.isActive" [class.dark]="this.theme === 'dark'" #titleEl>{{ this.title }}</h2>
+  </article>
+</section>

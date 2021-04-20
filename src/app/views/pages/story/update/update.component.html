@@ -1,0 +1,12 @@
+<section class="upd-sec">
+  <app-update-view
+    [brdid]="this.bltParam.brdid"
+    [bltid]="this.bltParam.bltid"
+    [bltDesc]="this.bltDesc"
+    [attachList]="this.attachList"
+    [editorAttachList]="this.editorAttachList"
+    [isRepImg]="true"
+    (cancelEv)="this.updProc()"
+    (updProcEv)="this.updProc()"
+  ></app-update-view>
+</section>

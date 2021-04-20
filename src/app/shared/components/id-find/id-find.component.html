@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>아이디 찾기</h2>
+<div class="cont" mat-dialog-content [formGroup]="this.submitGroup">
+  <div class="type-wrap">
+    <mat-radio-group formControlName="type">
+      <mat-radio-button color="primary" value="email" class="radio-email">이메일</mat-radio-button>
+      <mat-radio-button color="primary" value="mphone" class="radio-mphone">휴대전화</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-form-field class="input-field">
+    <mat-label>{{ this.inputTit }}</mat-label>
+    <input matInput type="text" formControlName="val" placeholder="{{ this.inputTit }}를 입력하세요." #findInputEl />
+    <button matSuffix mat-mini-fab color="primary" class="input-button" [disabled]="this.submitGroup.invalid" #submitEl>
+      <mat-icon class="input-button-icon" svgIcon="search"></mat-icon>
+    </button>
+    <mat-error *ngIf="this.getFormCtrl('val').hasError('required')">{{ this.inputTit }}를 입력하세요.</mat-error>
+    <mat-error *ngIf="this.getFormCtrl('val').hasError('email')">이메일을 확인하세요.</mat-error>
+    <mat-error *ngIf="this.getFormCtrl('val').hasError('mphone')">휴대전화를 확인하세요.</mat-error>
+  </mat-form-field>
+
+  <div class="no-data" *ngIf="this.isSearch && this.findId.length === 0">회원가입 되어 있지 않은 {{ this.inputTit }}입니다.</div>
+
+  <div class="res-wrap" *ngIf="this.findId.length > 0">
+    해당 {{ this.inputTit }}에 등록된 아이디는 아래와 같습니다.
+    <ul>
+      <li *ngFor="let id of this.findId">{{ id.loginid }}</li>
+    </ul>
+  </div>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-flat-button color="accent" #closeEl>닫기</button>
+</div>

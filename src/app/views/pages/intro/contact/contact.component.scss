@@ -1,0 +1,398 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .contact-wrap {
+    @include clear();
+
+    & > article {
+      margin-bottom: 40px;
+
+      @include mobile {
+        padding: 0 12px;
+      }
+
+      & .sub-title-wrap {
+        display: flex;
+        flex: 1;
+
+        @include title();
+
+        margin-bottom: 20px;
+      }
+
+      & .contact-txt-wrap {
+        & > ul {
+          @include clear();
+
+          & > li {
+            position: relative;
+            padding-left: 14px;
+            font-size: 14px;
+            font-family: $content-font;
+            line-height: 30px;
+
+            @include arrowBullet(3px, 3px, 12px, 0);
+          }
+        }
+      }
+
+      & .contact-card {
+        @include clear();
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        @include mobile {
+          display: block;
+        }
+
+        & .card-item {
+          position: relative;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          box-shadow: 1px 1px 5px #ddd;
+          padding: 16px;
+          width: 300px;
+          height: 220px;
+          font-size: 18px;
+          font-family: $title-font;
+          font-weight: 700;
+
+          @include mobile {
+            margin: 0 auto;
+            margin-bottom: 20px;
+          }
+
+          & > h3 {
+            position: relative;
+            font-size: 18px;
+            font-family: $title-font;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-left: 12px;
+
+            &::before {
+              position: absolute;
+              content: '';
+              width: 4px;
+              top: 6px;
+              left: 0;
+              bottom: 14px;
+              background-color: $font-color-dark;
+            }
+          }
+
+          & .contact-motion {
+            display: flex;
+            height: 120px;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            & .arrow {
+              position: relative;
+              &::before {
+                position: absolute;
+                content: '';
+                width: 16px;
+                height: 16px;
+                top: -20px;
+                left: -10px;
+                border-top: 6px solid $primary-color;
+                border-right: 6px solid $primary-color;
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+              }
+            }
+
+            & .airplane {
+              position: absolute;
+              left: 0;
+              top: 130px;
+              animation: airplaneX 2.5s infinite linear;
+
+              &::after {
+                content: '';
+                display: block;
+                width: 54px;
+                height: 38px;
+                background-image: url('/assets/images/icon/airplane.svg');
+
+                animation: airplaneY 2.5s infinite linear;
+              }
+            }
+
+            & .airplane_stopover {
+              position: absolute;
+              left: 0;
+              top: 130px;
+              animation: airplaneStopoverX 2.5s infinite linear;
+
+              &::after {
+                content: '';
+                display: block;
+                width: 54px;
+                height: 38px;
+                background-image: url('/assets/images/icon/airplane.svg');
+
+                animation: airplaneStopoverY 2.5s infinite linear;
+              }
+            }
+
+            & .airplane_end {
+              position: absolute;
+              left: 50%;
+              top: 130px;
+              animation: airplaneEndX 2.5s infinite linear;
+
+              &::after {
+                content: '';
+                display: block;
+                width: 54px;
+                height: 38px;
+                background-image: url('/assets/images/icon/airplane.svg');
+
+                animation: airplaneEndY 2.5s infinite linear;
+              }
+            }
+
+            & .ship {
+              position: absolute;
+              left: 50%;
+              top: 110px;
+              animation: shipX 2.5s infinite linear;
+
+              &::after {
+                content: '';
+                display: block;
+                width: 50px;
+                height: 50px;
+                background-image: url('/assets/images/icon/ship.svg');
+              }
+            }
+          }
+
+          & .time-wrap {
+            display: flex;
+            height: 50px;
+            align-items: flex-end;
+            justify-content: space-around;
+
+            & > div {
+              font-family: $title-font;
+              font-size: 13px;
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      & .contact-info {
+        @include clear();
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        & .info-item {
+          width: 500px;
+          height: 120px;
+          border: 1px solid #ddd;
+          box-shadow: 1px 1px 5px #ddd;
+          padding: 20px;
+          display: flex;
+          margin-bottom: 20px;
+          align-items: center;
+          border-radius: 6px;
+
+          @include mobile {
+            width: 100%;
+            padding: 16px;
+          }
+
+          & > .icon {
+            margin-right: 20px;
+
+            & > mat-icon {
+              font-size: 96px;
+              width: 96px;
+              height: 96px;
+              color: $primary-color;
+
+              @include mobile {
+                font-size: 64px;
+                width: 64px;
+                height: 64px;
+              }
+            }
+
+            &.mail {
+              & > mat-icon {
+                color: $red-color;
+              }
+            }
+
+            &.phone {
+              & > mat-icon {
+                color: $green-color;
+              }
+            }
+          }
+
+          & > .txt-info {
+            & > h3 {
+              @include clear();
+              position: relative;
+              font-size: 16px;
+              font-weight: 700;
+              font-family: $title-font;
+              padding-left: 12px;
+              margin-bottom: 6px;
+
+              &::before {
+                position: absolute;
+                content: '';
+                width: 4px;
+                top: 6px;
+                left: 0;
+                bottom: 6px;
+                background-color: $font-color-dark;
+              }
+            }
+
+            & .email {
+              font-size: 16px;
+              font-weight: 700;
+              font-family: $title-font;
+
+              & .at-txt {
+                color: $second-color;
+                font-size: 18px;
+                font-weight: 700;
+                margin: 0 2px;
+              }
+            }
+
+            & .phone {
+              font-size: 16px;
+              font-weight: 700;
+              font-family: $title-font;
+              margin-bottom: 6px;
+
+              & .nm-txt {
+                font-family: $title-font;
+                color: $primary-color;
+                font-size: 18px;
+                font-weight: 700;
+                margin: 0 8px;
+              }
+            }
+
+            & .instagram {
+              font-size: 16px;
+              font-weight: 700;
+              font-family: $title-font;
+
+              & .at-txt {
+                color: $second-color;
+                font-size: 16px;
+                font-weight: 700;
+                margin: 0 2px;
+              }
+
+              & .nm-txt {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes airplaneX {
+  40% {
+    animation-timing-function: linear;
+    transform: translateX(130px);
+  }
+  80%,
+  100% {
+    animation-timing-function: linear;
+    transform: translateX(250px);
+  }
+}
+@keyframes airplaneY {
+  40% {
+    animation-timing-function: linear;
+    transform: translateY(-60px);
+  }
+  80%,
+  100% {
+    animation-timing-function: linear;
+    transform: translateY(0px) rotate(30deg);
+  }
+}
+@keyframes airplaneStopoverX {
+  25% {
+    animation-timing-function: linear;
+    transform: translateX(50px);
+  }
+  50%,
+  100% {
+    animation-timing-function: linear;
+    transform: translateX(100px);
+  }
+}
+@keyframes airplaneStopoverY {
+  25% {
+    animation-timing-function: linear;
+    transform: translateY(-60px);
+  }
+  50%,
+  100% {
+    animation-timing-function: linear;
+    transform: translateY(0px) rotate(30deg);
+  }
+}
+@keyframes airplaneEndX {
+  50% {
+    transform: translateX(0px);
+  }
+  65% {
+    animation-timing-function: linear;
+    transform: translateX(40px);
+  }
+  90%,
+  100% {
+    animation-timing-function: linear;
+    transform: translateX(80px);
+  }
+}
+@keyframes airplaneEndY {
+  50% {
+    transform: translateY(0px);
+  }
+  65% {
+    animation-timing-function: linear;
+    transform: translateY(-60px);
+  }
+  90%,
+  100% {
+    animation-timing-function: linear;
+    transform: translateY(0px) rotate(30deg);
+  }
+}
+@keyframes shipX {
+  50% {
+    transform: translateX(0px);
+  }
+  80%,
+  100% {
+    animation-timing-function: linear;
+    transform: translateX(100px);
+  }
+}

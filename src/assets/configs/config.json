@@ -1,0 +1,35 @@
+{
+  "apiConfig": {
+    "apiHost": "local.barondive.com",
+    "apiPath": "/api",
+    "apiPort": 8081,
+    "apiSsl": false,
+    "apiSslPort": 443
+  },
+  "oAuth2Config": {
+    "protocol": "http",
+    "domain": "local.barondive.com",
+    "port": 8082,
+    "clientId": "",
+    "client_secret": "",
+    "scope": "",
+    "grantType": "password",
+    "path": "/oauth/token",
+    "refreshGrantType": "refresh_token",
+    "hrSchema": "barondive",
+    "hrIfSchema": "barondive",
+    "hrTimeZone": "GMT+9:00"
+  },
+  "brdConfig": {
+    "listItemsPerPage": 20,
+    "imgItemsPerPage": 20,
+    "cmntItemsPerPage": 10
+  },
+  "editorConfig": {
+    "height": 500,
+    "removeButtons": "Format,RemoveFormat,CopyFormatting,Language,Save,NewPage,Print,CreateDiv,Copy,Paste,PasteText,,PasteFromWord,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,,HiddenField,Anchor,Flash,Smiley,Iframe,About,save-to-pdf,Templates,Redo,Subscript,Superscript,,JustifyBlock,Outdent,Indent,BidiLtr,BidiRtl,Unlink,HKemoji,Cut,ShowBlocks,Undo,Styles,SpecialChar,Mailsign",
+    "uploadUrl": "/attach/uploadAttach",
+    "filebrowserImageUploadUrl": "/attach/uploadAttach",
+    "fileBrowserUploadMethod": "xhr"
+  }
+}

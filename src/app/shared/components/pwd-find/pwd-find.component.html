@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>비밀번호 찾기</h2>
+<div class="cont" mat-dialog-content [formGroup]="this.submitGroup">
+  <mat-form-field class="input-field">
+    <mat-label>아이디</mat-label>
+    <input matInput type="text" formControlName="loginid" placeholder="아이디를 입력하세요." #idInputEl />
+    <mat-error *ngIf="this.getFormCtrl('loginid').hasError('required')">아이디를 입력하세요.</mat-error>
+  </mat-form-field>
+  <mat-form-field class="input-field">
+    <mat-label>이메일</mat-label>
+    <input matInput type="text" formControlName="email" placeholder="이메일을 입력하세요." #emailInputEl />
+    <mat-error *ngIf="this.getFormCtrl('email').hasError('required')">이메일을 입력하세요.</mat-error>
+    <mat-error *ngIf="this.getFormCtrl('email').hasError('email')">이메일을 확인하세요.</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-flat-button color="primary" [disabled]="this.submitGroup.invalid" #submitEl>비밀번호 찾기</button>
+  <button mat-flat-button color="accent" #closeEl>닫기</button>
+</div>

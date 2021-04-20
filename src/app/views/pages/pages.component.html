@@ -1,0 +1,16 @@
+<section class="page-sec">
+  <app-top-sns></app-top-sns>
+  <app-top-gnb></app-top-gnb>
+  <app-main-carousel *ngIf="this.isMain"></app-main-carousel>
+  <app-sub-visual
+    *ngIf="!this.isMain"
+    [imgUrl]="this.currentVisual.imgUrl"
+    [title]="this.currentVisual.title"
+    [theme]="this.currentVisual?.theme"
+  ></app-sub-visual>
+
+  <article class="page-wrap">
+    <router-outlet></router-outlet>
+  </article>
+</section>
+<app-footer class="footer"></app-footer>

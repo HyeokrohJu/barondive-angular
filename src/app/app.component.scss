@@ -1,0 +1,11 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .wrap {
+    @include clear();
+
+    position: relative;
+    min-height: 100%;
+  }
+}

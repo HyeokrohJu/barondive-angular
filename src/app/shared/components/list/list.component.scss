@@ -1,0 +1,96 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .table-wrap {
+    @include clear();
+    width: 100%;
+    padding: 16px 16px 0;
+    @include table();
+
+    @include mobile {
+      display: none;
+    }
+
+    & .not-order {
+      vertical-align: text-bottom;
+    }
+  }
+
+  & .m-table-wrap {
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+
+    & > ul {
+      @include clear();
+
+      & > li {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $line-color;
+        box-shadow: 0 3px 5px -2px rgb(0 0 0 / 1%), 0 3px 5px 0 rgb(0 0 0 / 1%), 0 3px 5px 0 rgb(0 0 0 / 1%);
+
+        &.no-data {
+          height: 70px;
+          font-size: 16px;
+          font-family: $title-font;
+          font-weight: 500;
+          justify-content: center;
+        }
+
+        &:last-child {
+          margin-bottom: 10px;
+        }
+
+        & > div {
+          display: flex;
+          border-radius: 100%;
+          background-color: $primary-color;
+          color: #fff;
+          width: 40px;
+          height: 40px;
+          align-items: center;
+          justify-content: center;
+          font-weight: 500;
+          font-family: $title-font;
+          margin-right: 12px;
+          font-size: 14px;
+        }
+
+        & > dl {
+          @include clear();
+          width: calc(100% - 52px);
+          padding: 16px 0;
+
+          & > dt {
+            @include clear();
+            font-size: 16px;
+            font-family: $title-font;
+            margin-bottom: 8px;
+            @include ellipsis();
+          }
+
+          & > dd {
+            @include clear();
+            font-size: 12px;
+            font-family: $content-font;
+            text-align: right;
+
+            & > mat-icon {
+              font-size: 14px;
+              width: 14px;
+              height: 14px;
+              vertical-align: sub;
+              margin-left: 12px;
+              margin-right: 4px;
+              color: #777;
+            }
+          }
+        }
+      }
+    }
+  }
+}

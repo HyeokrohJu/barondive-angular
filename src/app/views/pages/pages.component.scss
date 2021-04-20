@@ -1,0 +1,28 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .page-sec {
+    @include clear();
+
+    & .page-wrap {
+      width: $content-default-width;
+      margin: 0 auto;
+      margin-top: 30px;
+      padding-bottom: 140px;
+
+      @include mobile {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  & .footer {
+    height: 140px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+}

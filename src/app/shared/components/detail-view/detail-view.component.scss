@@ -1,0 +1,176 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .detail-wrap {
+    @include clear();
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+      border: 3px solid #ddd;
+      bottom: -11px;
+      left: 50%;
+      background-color: #fff;
+      box-shadow: 0px 0px 5px #ccc;
+    }
+
+    & > h2 {
+      @include clear();
+      position: relative;
+      font-size: 18px;
+      font-family: $title-font;
+      font-weight: 700;
+      padding-left: 12px;
+      margin-bottom: 6px;
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 4px;
+        top: 8px;
+        left: 0;
+        bottom: 8px;
+        background-color: $font-color-dark;
+      }
+    }
+
+    & .info-wrap {
+      @include clear();
+      display: flex;
+      flex: 1;
+      align-items: center;
+      border-top: 2px solid #aaa;
+      border-bottom: 1px solid #ccc;
+      padding-top: 6px;
+      background-color: #f3f3f3;
+
+      & .info-item {
+        padding: 4px 6px;
+
+        & > mat-icon {
+          width: 52px;
+          height: 52px;
+          color: $primary-color;
+        }
+
+        & .writer {
+          font-family: $title-font;
+          font-size: 14px;
+          margin-bottom: 4px;
+        }
+
+        & .writer-info {
+          font-family: $content-font;
+          font-size: 12px;
+
+          & > mat-icon {
+            width: 14px;
+            height: 14px;
+            vertical-align: sub;
+            color: #777;
+          }
+
+          & > .txt {
+            margin-right: 12px;
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+
+    & .attach-wrap {
+      border-bottom: 1px solid $line-color;
+      font-size: 12px;
+      font-family: $content-font;
+      padding: 8px 12px;
+      display: flex;
+      flex: 1;
+      align-items: flex-start;
+
+      & h3 {
+        @include clear();
+        font-size: 12px;
+        font-family: $content-font;
+        position: relative;
+        padding-left: 8px;
+        margin-right: 12px;
+        white-space: nowrap;
+
+        &::before {
+          position: absolute;
+          content: '';
+          width: 3px;
+          height: 11px;
+          top: 9px;
+          left: 0;
+          background-color: $font-color-dark;
+        }
+      }
+
+      & ul {
+        @include clear();
+        width: 100%;
+
+        & > li {
+          @include clear();
+          display: flex;
+          flex: 1;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding: 4px 8px;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:hover {
+            background: #efefef;
+          }
+
+          & .file-nm {
+            font-weight: 700;
+
+            & .sub {
+              font-weight: 400;
+              margin-left: 4px;
+            }
+          }
+
+          & mat-icon {
+            width: 14px;
+            height: 14px;
+            vertical-align: sub;
+            color: #aaa;
+          }
+        }
+      }
+    }
+
+    & .cont-wrap {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px 16px;
+      min-height: 400px;
+
+      @include mobile {
+        width: auto;
+      }
+
+      & ::ng-deep img {
+        max-width: 1000px;
+        height: auto;
+
+        @include mobile {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}

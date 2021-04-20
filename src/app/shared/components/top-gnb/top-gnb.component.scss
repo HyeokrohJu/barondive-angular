@@ -1,0 +1,228 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .top-gnb-wrap {
+    @include clear();
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    height: 100px;
+    background-color: #fff;
+    z-index: 999;
+
+    @include mobile {
+      height: 60px;
+    }
+
+    &.gnb-small {
+      height: 60px;
+      box-shadow: 0px 1px 5px #ddd;
+
+      & .small-logo {
+        vertical-align: text-top;
+        margin-left: 16px;
+      }
+    }
+
+    & .gnb-sec-wrap {
+      width: $content-default-width;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex: 1;
+      align-items: stretch;
+      justify-content: space-between;
+
+      @include mobile {
+        width: 100%;
+        align-items: center;
+      }
+
+      & .logo-wrap {
+        display: flex;
+        align-items: center;
+
+        & .big-logo {
+          margin-left: 16px;
+        }
+
+        @include mobile {
+          & img {
+            width: 171px;
+            height: 50px;
+          }
+        }
+      }
+
+      & .nav-items {
+        @include mobile {
+          display: none;
+        }
+        & > ul {
+          @include clear();
+          display: flex;
+          flex: 1;
+          height: 100%;
+          align-items: stretch;
+          justify-content: space-between;
+
+          & > li {
+            @include clear();
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            &.active {
+              &::after {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 3px;
+                background-color: $bg-primary;
+                left: 0;
+                bottom: 0;
+                animation: line-animation 0.25s;
+              }
+            }
+
+            & > a {
+              padding: 4px 26px;
+              font-weight: 500;
+
+              &:hover {
+                color: $bg-primary;
+              }
+            }
+          }
+        }
+      }
+
+      & .nav-mobile-wrap {
+        display: none;
+        margin-right: 16px;
+
+        & mat-icon {
+          color: $primary-color;
+        }
+
+        & .overlay {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 998;
+          background: #000;
+          opacity: 0.1;
+          display: none;
+
+          &.active {
+            display: block;
+          }
+        }
+
+        & .nav-mobile {
+          position: fixed;
+          top: 0;
+          right: -272px;
+          bottom: 0;
+          width: 250px;
+          z-index: 999;
+          background-color: #fefefe;
+          box-shadow: 0px 1px 5px #ddd;
+          transition: 0.5s;
+
+          &.active {
+            right: 0;
+          }
+
+          & .close {
+            position: absolute;
+            top: 0;
+            left: -22px;
+            width: 20px;
+            height: 70px;
+            background: #fefefe;
+            border: 1px solid $line-color;
+            border-radius: 6px 0 0 6px;
+            cursor: pointer;
+
+            &::before {
+              position: absolute;
+              content: '';
+              width: 6px;
+              height: 6px;
+              top: 30px;
+              left: 4px;
+              border-top: 4px solid $font-color-dark;
+              border-right: 4px solid $font-color-dark;
+              transform: rotate(45deg);
+              -webkit-transform: rotate(45deg);
+            }
+          }
+
+          & .m-logo {
+            padding: 8px 0;
+            border-bottom: 1px solid $line-color;
+
+            & > a {
+              display: block;
+              margin: 0 20px;
+            }
+          }
+
+          & > ul {
+            @include clear();
+            margin-top: 12px;
+
+            & > li {
+              font-family: $title-font;
+              font-weight: 500;
+              display: block;
+              margin: 0 16px;
+              padding: 12px 0;
+              border-bottom: 1px solid $line-color;
+
+              & > a {
+                display: block;
+
+                & mat-icon {
+                  vertical-align: middle;
+                  margin-right: 16px;
+                }
+              }
+            }
+          }
+        }
+
+        @include mobile {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.sub-nav {
+  @include clear();
+  text-align: left;
+
+  & > li {
+    @include clear();
+    border-bottom: 1px solid #eee;
+    padding: 6px 12px;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+
+    & > a {
+      width: 100%;
+      display: block;
+    }
+  }
+}

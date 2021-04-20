@@ -1,0 +1,18 @@
+<div #spacer></div>
+<section class="sub-menu-wrap" stickyThing [spacer]="spacer" [marginTop]="60" [enable]="this.stickyStatus">
+  <article class="sub-art-wrap">
+    <ul>
+      <li [class.active]="this.router.url.includes('/cost/fundiving')">
+        <a #tabMenuEl [attr.path]="'/cost/fundiving'">Fun Diving</a>
+      </li>
+      <li [class.active]="this.router.url.includes('/cost/training')">
+        <a #tabMenuEl [attr.path]="'/cost/training'">Training</a>
+      </li>
+      <li [class.active]="this.router.url.includes('/cost/otherservice')">
+        <a #tabMenuEl [attr.path]="'/cost/otherservice'">Other Service</a>
+      </li>
+    </ul>
+  </article>
+</section>
+
+<router-outlet></router-outlet>

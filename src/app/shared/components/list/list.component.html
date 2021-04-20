@@ -1,0 +1,65 @@
+<article class="table-wrap">
+  <table mat-table [dataSource]="this.tbDataSource">
+    <ng-container *ngFor="let col of this.tbConfig.dpCol" matColumnDef="{{ col }}">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [style.max-width]="this.tbConfig.colNms[col].width + 'px'"
+        [style.min-width]="this.tbConfig.colNms[col].width + 'px'"
+        [style.width]="this.tbConfig.colNms[col].width + 'px'"
+      >
+        <span class="not-order">{{ this.tbConfig.colNms[col].name }}</span>
+      </th>
+
+      <td
+        mat-cell
+        *matCellDef="let el; let idx = index"
+        [style.text-align]="this.tbConfig.colNms[col].align"
+        [style.max-width]="this.tbConfig.colNms[col].width + 'px'"
+        [style.min-width]="this.tbConfig.colNms[col].width + 'px'"
+        [style.width]="this.tbConfig.colNms[col].width + 'px'"
+        [style.color]="this.el.custom1"
+      >
+        <span class="ellipsis" *ngIf="!this.tbConfig.colNms[col].type">
+          {{ el[col] }}
+        </span>
+        <span class="ellipsis" *ngIf="this.tbConfig.colNms[col].type === 'link'">
+          <a [style.color]="el.custom1" [attr.idx]="idx" #linkEl>{{ el[col] }}</a>
+        </span>
+        <span class="ellipsis" *ngIf="this.tbConfig.colNms[col].type === 'num'">
+          {{ (this.tbConfig.defNum | castNum) - idx }}
+        </span>
+        <span class="ellipsis" *ngIf="this.tbConfig.colNms[col].type === 'date'">
+          {{ el[col] | dateFormat: this.tbConfig.colNms[col].format }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="noData">
+      <td class="no-data" mat-footer-cell *matFooterCellDef [attr.colspan]="this.tbConfig.dpCol.length">데이터가 존재하지 않습니다.</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="this.tbConfig.dpCol; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: this.tbConfig.dpCol"></tr>
+    <tr mat-footer-row *matFooterRowDef="['noData']" [hidden]="this.tbDataSource.data.length > 0"></tr>
+  </table>
+</article>
+
+<article class="m-table-wrap">
+  <ul>
+    <li class="no-data" *ngIf="this.tbData.length === 0">데이터가 존재하지 않습니다.</li>
+    <li *ngFor="let item of this.tbData; let idx = index" [attr.idx]="idx" #linkEl>
+      <div>{{ (this.tbConfig.defNum | castNum) - idx }}</div>
+      <dl>
+        <dt [style.color]="item.custom1">{{ item.title }}</dt>
+        <dd>
+          {{ item.crenm }}
+          <mat-icon aria-hidden="false" aria-label="등록일시" svgIcon="time"></mat-icon>
+          <span class="txt">{{ item.credate | dateFormat: this.momentFullDate }}</span>
+          <mat-icon aria-hidden="false" aria-label="조회수" svgIcon="eye"></mat-icon>
+          <span class="txt">{{ item.clickcnt }}</span>
+        </dd>
+      </dl>
+    </li>
+  </ul>
+</article>

@@ -1,0 +1,53 @@
+<section class="login-wrap">
+  <article>
+    <div class="login-img-wrap">
+      <div class="bg"></div>
+      <div class="bg-img"></div>
+      <div class="text-wrap">
+        <h3><a #baronTitEl>BaronDive</a></h3>
+        <p>Let's keep the Honor of Dive!!</p>
+      </div>
+    </div>
+    <div class="m-logo">
+      <a #baronTitEl><img src="/assets/images/logo/baron_logo_small.png" alt="Barondive" class="small-logo" /></a>
+    </div>
+    <div class="form-wrap" [formGroup]="this.submitGroup">
+      <div>
+        <h2>Login</h2>
+        <div class="input-wrap">
+          <mat-form-field class="input-field">
+            <mat-label>아이디</mat-label>
+            <mat-icon matPrefix svgIcon="user_check" class="prefix-icon"></mat-icon>
+            <input matInput type="text" formControlName="username" placeholder="아이디를 입력하세요." #idInputEl />
+            <mat-error *ngIf="this.getFormCtrl('username').hasError('required')">아이디를 입력하세요.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-wrap">
+          <mat-form-field class="input-field">
+            <mat-label>비밀번호</mat-label>
+            <mat-icon matPrefix svgIcon="password" class="prefix-icon"></mat-icon>
+            <input matInput type="password" formControlName="password" placeholder="비밀번호를 입력하세요." #pwInputEl />
+            <mat-error *ngIf="this.getFormCtrl('password').hasError('required')">비밀번호를 입력하세요.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="id-save">
+          <mat-checkbox color="primary" formControlName="idSave">아이디 저장</mat-checkbox>
+        </div>
+
+        <div class="login-btn">
+          <button mat-raised-button color="primary" [disabled]="this.submitGroup.invalid" #loginBtnEl>
+            <mat-icon aria-hidden="false" aria-label="삭제" svgIcon="login"></mat-icon>
+            로그인
+          </button>
+        </div>
+
+        <div class="sub-btn-wrap">
+          <a #idFindEl>아이디 찾기</a>
+          <a #pwdFindEl>비밀번호 찾기</a>
+          <a #signupEl>회원 가입</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

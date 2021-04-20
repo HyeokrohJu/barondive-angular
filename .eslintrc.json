@@ -1,0 +1,115 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "airbnb-typescript/base",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "class-methods-use-this": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "no-alert": "off",
+        "no-console": ["warn", {
+          "allow": ["error"]
+          }
+        ],
+        "no-underscore-dangle": ["error", {
+          "allowAfterThis": true,
+          "allowAfterSuper": true,
+          "allowAfterThisConstructor": true
+          }
+        ],
+        "camelcase": ["error", {
+          "ignoreGlobals": true,
+          "allow": [
+            "^_",
+            "access_token",
+            "refresh_token",
+            "grant_type",
+            "client_id",
+            "client_secret",
+            "expires_in",
+            "token_type",
+            "user_name",
+            "chunk_size",
+            "browse_button",
+            "flash_swf_url",
+            "silverlight_xap_url",
+            "multipart_params",
+            "multi_selection"
+          ]
+          }
+        ],
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/**/*.spec.ts", "src/**/*.d.ts"],
+      "parserOptions": {
+        "project": "./tsconfig.spec.json"
+      },
+      "extends": [
+        "plugin:jasmine/recommended",
+        "airbnb-typescript/base",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
+      ],
+      "plugins": ["jasmine"],
+      "env": { "jasmine": true },
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.scss"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {}
+    }
+  ]
+}

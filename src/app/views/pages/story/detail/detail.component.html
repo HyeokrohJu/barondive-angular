@@ -1,0 +1,45 @@
+<section class="detail-wrap">
+  <div class="btn-wrap">
+    <button class="mr4" *ngIf="this.isAuth" mat-raised-button color="warn" #delBtnEl>
+      <mat-icon aria-hidden="false" aria-label="삭제" svgIcon="delete"></mat-icon>
+      삭제
+    </button>
+
+    <button class="mr4" *ngIf="this.isAuth" mat-raised-button color="accent" #editBtnEl>
+      <mat-icon aria-hidden="false" aria-label="수정" svgIcon="edit"></mat-icon>
+      수정
+    </button>
+
+    <button mat-raised-button color="primary" #listBtnEl>
+      <mat-icon aria-hidden="false" aria-label="목록" svgIcon="list"></mat-icon>
+      목록
+    </button>
+  </div>
+
+  <article>
+    <app-detail-view [descItem]="this.bltDesc" [attachItem]="this.attachList"></app-detail-view>
+    <app-comment
+      [cmntParam]="this.cmntParam"
+      [cmntItem]="this.cmntList"
+      [cmntSize]="this.cmntTot"
+      (pgChangeEv)="this.cmntPageChange($event)"
+    ></app-comment>
+  </article>
+
+  <div class="btn-wrap">
+    <button class="mr4" *ngIf="this.isAuth" mat-raised-button color="warn" #delBtnEl>
+      <mat-icon aria-hidden="false" aria-label="삭제" svgIcon="delete"></mat-icon>
+      삭제
+    </button>
+
+    <button class="mr4" *ngIf="this.isAuth" mat-raised-button color="accent" #editBtnEl>
+      <mat-icon aria-hidden="false" aria-label="수정" svgIcon="edit"></mat-icon>
+      수정
+    </button>
+
+    <button mat-raised-button color="primary" #listBtnEl>
+      <mat-icon aria-hidden="false" aria-label="목록" svgIcon="list"></mat-icon>
+      목록
+    </button>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<div #spacer></div>
+<section class="sub-menu-wrap" stickyThing [spacer]="spacer" [marginTop]="60" [enable]="this.stickyStatus">
+  <article class="sub-art-wrap">
+    <ul>
+      <li [class.active]="this.router.url.includes('/mypage/userinfo')">
+        <a #tabMenuEl [attr.path]="'/mypage/userinfo'">회원정보</a>
+      </li>
+      <li [class.active]="this.router.url.includes('/mypage/revlist')">
+        <a #tabMenuEl [attr.path]="'/mypage/revlist'">예약내역</a>
+      </li>
+    </ul>
+  </article>
+</section>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,223 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .signup-wrap {
+    @include clear();
+    width: 100%;
+    height: 100vh;
+    background-color: #dedee0;
+
+    @include mobile {
+      height: auto;
+      background-color: #fff;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 80%;
+      height: 90%;
+      top: -25%;
+      left: -10%;
+      transform: rotate(30deg);
+      background-color: #dedee0;
+      border-radius: 0 20% 5% 0;
+      box-shadow: 0 30px 20px -2px rgb(0 0 0 / 2%), 0 30px 20px 0 rgb(0 0 0 / 2%), 0 30px 20px 0 rgb(0 0 0 / 2%);
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: -10%;
+      right: 5%;
+      transform: rotate(-30deg);
+      background-color: #dedee0;
+      border-radius: 0 20% 2% 0;
+      box-shadow: 0 30px 20px -2px rgb(0 0 0 / 1%), 0 30px 20px 0 rgb(0 0 0 / 1%), 0 30px 20px 0 rgb(0 0 0 / 1%);
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    & > article {
+      position: absolute;
+      width: 1000px;
+      height: 600px;
+      background-color: #fff;
+      top: calc(50% - 300px);
+      left: calc(50% - 500px);
+      z-index: 99;
+      box-shadow: 0 3px 5px -2px rgb(0 0 0 / 1%), 0 3px 5px 0 rgb(0 0 0 / 1%), 0 3px 5px 0 rgb(0 0 0 / 1%);
+      border-radius: 20px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+
+      @include mobile {
+        position: relative;
+        display: block;
+        width: calc(100% - 12px);
+        height: auto;
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        border-radius: 20px;
+      }
+
+      & > div {
+        width: 50%;
+
+        @include mobile {
+          width: 100%;
+        }
+      }
+
+      & .m-logo {
+        display: none;
+        width: auto;
+
+        @include mobile {
+          display: block;
+          padding: 12px 20px;
+          border-bottom: 1px solid $line-color;
+          box-shadow: 0 3px 5px -2px rgb(0 0 0 / 1%), 0 3px 5px 0 rgb(0 0 0 / 1%), 0 3px 5px 0 rgb(0 0 0 / 1%);
+        }
+      }
+
+      & > .signup-img-wrap {
+        position: relative;
+        height: 600px;
+
+        @include mobile {
+          display: none;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          border: 20px solid #fff;
+          border-radius: 100%;
+          bottom: 60px;
+          right: -60px;
+          opacity: 0.8;
+        }
+
+        & > .bg-img {
+          width: 100%;
+          height: 100%;
+          background-image: url('/assets/images/login/bg_login.jpg');
+          background-size: cover;
+          background-position-x: left;
+          background-position-y: bottom;
+          border-radius: 20px 0 0 20px;
+        }
+
+        & > .bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.6;
+          background: radial-gradient(at left top, rgb(7, 99, 132), rgb(153, 51, 188));
+          border-radius: 20px 0 0 20px;
+        }
+
+        & .text-wrap {
+          position: absolute;
+          top: 60px;
+          left: 60px;
+          right: 60px;
+          color: #fff;
+          font-family: $title-font;
+
+          & > h3 {
+            font-weight: 600;
+            font-size: 40px;
+          }
+          & > p {
+            font-weight: 500;
+            font-size: 16px;
+          }
+        }
+      }
+
+      & > .form-wrap {
+        & > div {
+          padding: 40px;
+
+          & > h2 {
+            position: relative;
+            padding-left: 12px;
+            font-family: $title-font;
+            font-weight: 700;
+            font-size: 26px;
+
+            &::before {
+              position: absolute;
+              content: '';
+              width: 4px;
+              top: 6px;
+              left: 0;
+              bottom: 6px;
+              background-color: $font-color-dark;
+            }
+          }
+
+          & .input-wrap {
+            background-color: #fff;
+
+            & .input-field {
+              @include clear();
+              width: 100%;
+
+              &:not(.mat-focused) ::ng-deep .mat-form-field-flex:hover .mat-form-field-outline-thick {
+                color: rgb(0 0 0 / 30%);
+              }
+
+              & .prefix-icon {
+                margin-right: 8px;
+                color: $primary-color;
+              }
+            }
+          }
+
+          & .sex-wrap {
+            margin-bottom: 12px;
+
+            & .radio-sex-m {
+              margin-right: 16px;
+            }
+          }
+
+          & .signup-btn {
+            margin-bottom: 16px;
+
+            & > button {
+              width: 100%;
+              padding: 8px 0;
+              font-family: $title-font;
+              font-size: 18px;
+              font-weight: 700;
+
+              & > mat-icon {
+                color: #fff;
+                margin-right: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

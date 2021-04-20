@@ -1,0 +1,606 @@
+@import '~app/scss/_variables.scss';
+
+@mixin clear() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin systemScrollbar() {
+  --scrollbar-thumb-color: #d0d0d0;
+  --scrollbar-track-color: #ededed;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+
+  overflow: overlay;
+
+  &:hover {
+    &::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--scrollbar-track-color);
+      border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb-color);
+      border-radius: 6px;
+      border: 0 none;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+    border-radius: 6px;
+    border: 0 none;
+  }
+}
+
+@mixin table() {
+  font-size: 14px;
+  font-family: $title-font;
+  margin: 0;
+  padding: 0;
+
+  & table {
+    width: 100%;
+
+    & tr {
+      height: 40px;
+
+      &:hover {
+        & td {
+          background-color: #efefef;
+          font-weight: 700;
+          &:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+          &:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+        }
+      }
+    }
+
+    & th {
+      border-top: 2px solid #e0e0e0;
+      font-weight: 700;
+    }
+
+    & th,
+    & td {
+      font-size: 14px;
+      color: $def-text-color;
+      font-family: $title-font;
+      text-align: center;
+      padding: 0 4px;
+
+      & span.ellipsis {
+        @include ellipsis();
+      }
+
+      &.center {
+        text-align: center;
+      }
+
+      &.left {
+        text-align: left;
+      }
+    }
+
+    & td {
+      font-weight: 400;
+    }
+
+    & .no-data {
+      text-align: center;
+    }
+  }
+}
+
+@mixin ellipsis() {
+  width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin arrow($size: 3px, $borderColor: #fff) {
+  border: solid $borderColor;
+  border-width: 0 $size $size 0;
+  display: inline-block;
+  padding: $size;
+  margin-left: 8px;
+
+  &.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transition: transform 0.15s linear;
+  }
+}
+
+@mixin arrowActive() {
+  -webkit-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  transition: transform 0.15s linear;
+}
+
+@mixin moveTitle($pos: 'left-bottom', $isSub: false) {
+  position: absolute;
+  color: $bg-primary-txt-color;
+  font-family: $title-font;
+  visibility: hidden;
+  @if $isSub == true {
+    font-weight: 600;
+    font-size: 22px;
+  } @else {
+    font-weight: 700;
+    font-size: 48px;
+  }
+
+  @if $pos == 'left-bottom' {
+    bottom: 80px;
+    left: 40px;
+    @if $isSub == true {
+      bottom: 40px;
+      left: 43px;
+    }
+  } @else if $pos == 'left-top' {
+    top: 40px;
+    left: 40px;
+    @if $isSub == true {
+      top: 80px;
+      left: 43px;
+    }
+  } @else if $pos == 'right-bottom' {
+    bottom: 80px;
+    right: 40px;
+    @if $isSub == true {
+      bottom: 40px;
+      right: 43px;
+    }
+  } @else if $pos == 'right-top' {
+    top: 40px;
+    right: 40px;
+    @if $isSub == true {
+      top: 80px;
+      right: 43px;
+    }
+  }
+}
+
+@mixin moveAni($pos: 'left-bottom', $isSub: false) {
+  animation-play-state: running;
+  visibility: visible;
+
+  @if $pos == 'left-bottom' {
+    @if $isSub == true {
+      animation: ts-move 0.5s;
+    } @else {
+      animation: t-move-left 0.5s;
+    }
+  } @else if $pos == 'left-top' {
+    @if $isSub == true {
+      animation: ts-move 0.5s;
+    } @else {
+      animation: t-move-left 0.5s;
+    }
+  } @else if $pos == 'right-bottom' {
+    @if $isSub == true {
+      animation: ts-move 0.5s;
+    } @else {
+      animation: t-move-right 0.5s;
+    }
+  } @else if $pos == 'right-top' {
+    @if $isSub == true {
+      animation: ts-move 0.5s;
+    } @else {
+      animation: t-move-right 0.5s;
+    }
+  }
+}
+
+@mixin title() {
+  @include clear();
+  position: relative;
+  margin: 10px 0;
+  padding-left: 12px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 4px;
+    top: 8px;
+    left: 0;
+    bottom: 8px;
+    background-color: $font-color-dark;
+  }
+
+  & .main-title {
+    @include clear();
+    font-size: 18px;
+    font-family: $title-font;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-right: 12px;
+  }
+
+  & .center-line {
+    content: '';
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: $line-color;
+    box-shadow: 0px 1px 5px #ddd;
+    animation: line-color 1s;
+  }
+
+  & .more-btn {
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+}
+
+@mixin ellipsis-multi-line($line-clamp: 2) {
+  display: inline-block;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  height: (1.4em * $line-clamp);
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;
+}
+
+@mixin media($device_width) {
+  @media #{$device_width} {
+    @content;
+  }
+}
+
+@mixin keyframe($animation_name) {
+  @keyframes #{$animation_name} {
+    @content;
+  }
+}
+
+@mixin arrowBullet($width: 3px, $height: 3px, $top: 13px, $left: 0px, $size: 2px) {
+  &::before {
+    position: absolute;
+    content: '';
+    width: $width;
+    height: $height;
+    top: $top;
+    left: $left;
+    border-top: $size solid $font-color-dark;
+    border-right: $size solid $font-color-dark;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+}
+
+@mixin infoItem {
+  position: relative;
+  width: 500px;
+  height: 120px;
+  border: 1px solid #ddd;
+  box-shadow: 1px 1px 5px #ddd;
+  padding: 20px;
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  border-radius: 6px;
+
+  @include mobile {
+    width: 100%;
+  }
+
+  & > .icon {
+    margin-right: 20px;
+
+    & > mat-icon {
+      font-size: 96px;
+      width: 96px;
+      height: 96px;
+      color: $primary-color;
+    }
+
+    &.padi {
+      & > mat-icon {
+        color: #0c4ca2;
+      }
+    }
+
+    &.padi_red {
+      & > mat-icon {
+        color: #ed1c24;
+      }
+    }
+
+    &.padi_dark {
+      & > mat-icon {
+        color: #444;
+      }
+    }
+
+    &.green {
+      & > mat-icon {
+        color: $green-color;
+      }
+    }
+
+    &.purple {
+      & > mat-icon {
+        color: $purple-light-color;
+      }
+    }
+
+    &.orange {
+      & > mat-icon {
+        color: $orange-light-color;
+      }
+    }
+
+    &.red {
+      & > mat-icon {
+        color: $red-light-color;
+      }
+    }
+
+    &.dark {
+      & > mat-icon {
+        color: #444;
+      }
+    }
+
+    &.dark-green {
+      & > mat-icon {
+        color: #007300;
+      }
+    }
+  }
+
+  & > .txt-info {
+    & > h3 {
+      @include clear();
+      position: relative;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: $title-font;
+      padding-left: 12px;
+      margin-bottom: 6px;
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 4px;
+        top: 6px;
+        left: 0;
+        bottom: 6px;
+        background-color: $font-color-dark;
+      }
+
+      & > mat-icon {
+        vertical-align: middle;
+        color: $primary-color;
+      }
+    }
+
+    & .txt-info-item {
+      position: relative;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: $title-font;
+      margin-bottom: 6px;
+      padding-left: 12px;
+
+      @include mobile {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 3px;
+        height: 3px;
+        top: 8px;
+        left: 0;
+        border-top: 2px solid $font-color-dark;
+        border-right: 2px solid $font-color-dark;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+      }
+
+      & .sub-money {
+        color: $red-color;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: $title-font;
+      }
+    }
+
+    & .money-txt {
+      position: absolute;
+      font-weight: 700;
+      font-family: $title-font;
+      right: 15px;
+      top: -5px;
+      font-size: 26px;
+      color: #fff;
+      background: $red-color;
+      box-shadow: 1px 1px 5px $red-dark-color;
+      width: 90px;
+      border-radius: 0 0 5px 5px;
+      text-align: center;
+      padding: 20px 0;
+
+      @include mobile {
+        width: 70px;
+        font-size: 18px;
+        padding: 10px 0;
+        top: -10px;
+      }
+
+      &.one {
+        right: 125px;
+        font-size: 18px;
+        background: $second-color;
+        box-shadow: 1px 1px 5px $second-dark-color;
+
+        @include mobile {
+          right: 100px;
+          font-size: 14px;
+        }
+      }
+
+      &.two {
+        width: 100px;
+        font-size: 18px;
+
+        @include mobile {
+          width: 78px;
+          font-size: 14px;
+        }
+      }
+
+      & > mat-icon {
+        vertical-align: top;
+
+        @include mobile {
+          width: 18px;
+          height: 18px;
+          font-size: 18px;
+        }
+      }
+
+      & > .sub-txt {
+        font-weight: 700;
+        font-family: $title-font;
+        font-size: 18px;
+
+        @include mobile {
+          vertical-align: bottom;
+          margin-right: 4px;
+          font-size: 14px;
+        }
+      }
+
+      &.long {
+        width: 140px;
+        font-size: 18px;
+
+        @include mobile {
+          width: 125px;
+        }
+      }
+
+      &.etc {
+        font-size: 18px;
+        font-weight: 700;
+        font-family: $title-font;
+
+        @include mobile {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@mixin mobile {
+  @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+@keyframes t-move-left {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes t-move-right {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes ts-move {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes line-color {
+  from {
+    opacity: 0;
+    background-color: $second-light-color;
+  }
+  to {
+    opacity: 1;
+    transform: $line-color;
+  }
+}
+
+@keyframes line-animation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}

@@ -1,0 +1,8 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .ins-sec {
+    @include clear();
+  }
+}

@@ -1,0 +1,15 @@
+<div #spacer></div>
+<section class="sub-menu-wrap" stickyThing [spacer]="spacer" [marginTop]="60" [enable]="this.stickyStatus">
+  <article class="sub-art-wrap">
+    <ul>
+      <li [class.active]="this.router.url.includes('/community/notice')">
+        <a #tabMenuEl [attr.path]="'/community/notice'">Notice</a>
+      </li>
+      <li [class.active]="this.router.url.includes('/community/review')">
+        <a #tabMenuEl [attr.path]="'/community/review'">Review</a>
+      </li>
+    </ul>
+  </article>
+</section>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,56 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .list-wrap {
+    @include clear();
+
+    & .list-item {
+      @include clear();
+      font-size: 14px;
+      font-family: $title-font;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      margin: 8px 0;
+
+      & dt {
+        @include ellipsis();
+
+        & mat-icon {
+          vertical-align: middle;
+          color: $second-color;
+          margin-right: 8px;
+          transition: transform 0.5s;
+        }
+
+        &:hover {
+          & a {
+            color: $bg-primary;
+            font-weight: 600;
+          }
+
+          & mat-icon {
+            transform: rotate(360deg);
+          }
+        }
+      }
+
+      & dd {
+        font-size: 12px;
+        white-space: nowrap;
+        color: $font-sub-text-color;
+
+        & mat-icon {
+          font-size: 14px;
+          width: 14px;
+          height: 14px;
+          vertical-align: sub;
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+}

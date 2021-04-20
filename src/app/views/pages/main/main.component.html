@@ -1,0 +1,78 @@
+<section class="main-layout-wrap">
+  <article class="layout-item">
+    <div class="col-flex">
+      <div class="flex-item">
+        <div class="main-title-wrap">
+          <h2 class="main-title">Baron Story</h2>
+          <div class="center-line"></div>
+          <div>
+            <mat-icon aria-hidden="false" aria-label="더보기" matTooltip="더보기" class="more-btn" #baronStoryMoreEl>read_more</mat-icon>
+          </div>
+        </div>
+        <app-card-portlet
+          width="100%"
+          height="540px"
+          [imgUrl]="this.bStoryList.filethumb"
+          [title]="this.bStoryList.title"
+          [writer]="this.bStoryList.crenm"
+          [dateTime]="this.bStoryList.credate"
+          [content]="this.bStoryList.cont"
+          [brdid]="this.bStoryList.brdid"
+          [bltid]="this.bStoryList.bltid"
+          (clickEv)="this.pageChange($event)"
+        ></app-card-portlet>
+      </div>
+      <div class="flex-item">
+        <div class="flex-row">
+          <div class="main-title-wrap">
+            <h2 class="main-title">Tour Story</h2>
+            <div class="center-line"></div>
+            <div>
+              <mat-icon aria-hidden="false" aria-label="더보기" matTooltip="더보기" class="more-btn" #tourStoryMoreEl>read_more</mat-icon>
+            </div>
+          </div>
+          <app-card-portlet
+            *ngFor="let tStory of this.tStoryList"
+            width="100%"
+            height="200px"
+            [imgUrl]="tStory.filethumb"
+            [title]="tStory.title"
+            [writer]="tStory.crenm"
+            [dateTime]="tStory.credate"
+            [content]="tStory.cont"
+            [brdid]="tStory.brdid"
+            [bltid]="tStory.bltid"
+            (clickEv)="this.pageChange($event)"
+          ></app-card-portlet>
+        </div>
+      </div>
+    </div>
+    <div class="col-flex">
+      <div class="flex-item">
+        <div class="main-title-wrap">
+          <h2 class="main-title">공지사항</h2>
+          <div class="center-line"></div>
+          <div>
+            <mat-icon aria-hidden="false" aria-label="더보기" matTooltip="더보기" class="more-btn" #noticeMoreEl>read_more</mat-icon>
+          </div>
+        </div>
+        <app-list-portlet width="100%" height="160px" [dataList]="this.noticeList" (clickEv)="this.pageChange($event)"></app-list-portlet>
+      </div>
+      <div class="flex-item">
+        <div class="flex-row">
+          <div class="main-title-wrap">
+            <h2 class="main-title">여행후기</h2>
+            <div class="center-line"></div>
+            <div>
+              <mat-icon aria-hidden="false" aria-label="더보기" matTooltip="더보기" class="more-btn" #reviewMoreEl>read_more</mat-icon>
+            </div>
+          </div>
+          <app-list-portlet width="100%" height="160px" [dataList]="this.reviewList" (clickEv)="this.pageChange($event)"></app-list-portlet>
+        </div>
+      </div>
+    </div>
+  </article>
+  <div class="layout-item w300">
+    <app-aside></app-aside>
+  </div>
+</section>

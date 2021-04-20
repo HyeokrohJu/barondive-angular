@@ -1,0 +1,54 @@
+@import '~app/scss/_variables.scss';
+@import '~app/scss/_mixin.scss';
+
+:host {
+  & .training-wrap {
+    @include clear();
+
+    & > article {
+      margin-bottom: 40px;
+
+      @include mobile {
+        padding: 0 12px;
+      }
+
+      & .sub-title-wrap {
+        display: flex;
+        flex: 1;
+
+        @include title();
+
+        margin-bottom: 20px;
+      }
+
+      & .training-txt-wrap {
+        & > ul {
+          @include clear();
+          margin-bottom: 20px;
+
+          & > li {
+            position: relative;
+            padding-left: 14px;
+            font-size: 14px;
+            font-family: $content-font;
+            line-height: 30px;
+
+            @include arrowBullet(3px, 3px, 12px, 0);
+          }
+        }
+      }
+
+      & .training-info {
+        @include clear();
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        & .info-item {
+          @include infoItem;
+        }
+      }
+    }
+  }
+}
